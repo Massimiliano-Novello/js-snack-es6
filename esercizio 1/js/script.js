@@ -35,15 +35,24 @@ const biciclette = [
     }
 ];
 
-const pesoBicicletta = biciclette.reduce((item, bici) => item.peso < bici.peso ? item : bici);
-console.log(pesoBicicletta);
+let biciLeggere = {...biciclette[0]}
+
+biciclette.forEach ((element) => {
+    const {nome, peso} = element
+    if (peso < biciLeggere.peso) {
+        biciLeggere.nome = nome
+        biciLeggere.peso = peso
+    }
+})
+
+console.log(biciLeggere);
 
 creazioneFrase();
 
 function creazioneFrase () {
     const container = document.querySelector(".container");
     console.log(container);
-    const result = `<h2>La bicicletta ${pesoBicicletta.nome} pesa solo ${pesoBicicletta.peso}kg ed è la più leggera </h2>`;
+    const result = `<h2>La bicicletta ${biciLeggere.nome} pesa solo ${biciLeggere.peso}kg ed è la più leggera </h2>`;
     container.innerHTML = result;
 }
 
